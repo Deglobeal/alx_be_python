@@ -40,5 +40,4 @@ class TestSimpleCalculator(unittest.TestCase):
         self.assertIsNone(self.calc.divide(5, 10),  6)
         self.assertEqual(self.calc.divide(10, 5), 20)# Test division by zero
 
-if __name__ == "__main__":
-    unittest.main()
+
