@@ -8,6 +8,9 @@ class Book:
     def get_details(self):
         return f"Title: {self.title}, Author: {self.author}"
 
+    def __str__(self):
+        return self.get_details()
+
 class EBook(Book):
     def __init__(self, title, author, file_size):
         # Initialize base class
@@ -18,6 +21,9 @@ class EBook(Book):
         base_details = super().get_details()
         return f"{base_details}, File Size: {self.file_size}MB"
 
+    def __str__(self):
+        return self.get_details()
+
 class PrintBook(Book):
     def __init__(self, title, author, page_count):
         # Initialize base class
@@ -27,6 +33,9 @@ class PrintBook(Book):
     def get_details(self):
         base_details = super().get_details()
         return f"{base_details}, Page Count: {self.page_count}"
+
+    def __str__(self):
+        return self.get_details()
 
 class Library:
     def __init__(self):
@@ -43,5 +52,4 @@ class Library:
             print("No books in the library.")
         else:
             for book in self.books:
-                print(book.get_details())
-
+                print(book)  # Now, `book` will automatically call `__str__` when printed.
