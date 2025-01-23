@@ -33,3 +33,5 @@ if __name__ == "__main__":
 
     # Deleting the book instance (to trigger the __del__ method)
     del book1
+    
+    
