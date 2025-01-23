@@ -1,37 +1,47 @@
-# book_class.py
+# library_system.py
 
 class Book:
-    def __init__(self, title, author, year):
-        """Constructor to initialize the book instance."""
+    def __init__(self, title, author):
         self.title = title
         self.author = author
-        self.year = year
 
-    def __del__(self):
-        """Destructor to display a message when the object is deleted."""
-        print(f"Deleting {self.title}")
+    def get_details(self):
+        return f"Title: {self.title}, Author: {self.author}"
 
-    def __str__(self):
-        """String representation of the book."""
-        return f"{self.title} by {self.author}, published in {self.year}"
+class EBook(Book):
+    def __init__(self, title, author, file_size):
+        # Initialize base class
+        super().__init__(title, author)
+        self.file_size = file_size
 
-    def __repr__(self):
-        """Official representation of the book."""
-        return f"Book('{self.title}', '{self.author}', {self.year})"
+    def get_details(self):
+        base_details = super().get_details()
+        return f"{base_details}, File Size: {self.file_size}MB"
 
+class PrintBook(Book):
+    def __init__(self, title, author, page_count):
+        # Initialize base class
+        super().__init__(title, author)
+        self.page_count = page_count
 
-# Example of usage
-if __name__ == "__main__":
-    # Creating a Book instance
-    book1 = Book("The Great Gatsby", "F. Scott Fitzgerald", 1925)
-    
-    # Print the string representation of the book
-    print(book1)
-    
-    # Print the official representation of the book
-    print(repr(book1))
+    def get_details(self):
+        base_details = super().get_details()
+        return f"{base_details}, Page Count: {self.page_count}"
 
-    # Deleting the book instance (to trigger the __del__ method)
-    del book1
-    
-    
+class Library:
+    def __init__(self):
+        self.books = []
+
+    def add_book(self, book):
+        if isinstance(book, Book):
+            self.books.append(book)
+        else:
+            print("Only instances of Book, EBook, or PrintBook can be added.")
+
+    def list_books(self):
+        if not self.books:
+            print("No books in the library.")
+        else:
+            for book in self.books:
+                print(book.get_details())
+
